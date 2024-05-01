@@ -1,0 +1,15 @@
+services:
+  express:
+    image: mongo-express
+    depends_on:
+      mongodb:
+        condition: service_started
+    ports:
+      - "7010:8081"
+    environment:
+      BE_VERSION: ${BE_VERSION:-v4}
+      ME_CONFIG_BASICAUTH_USERNAME: view
+      ME_CONFIG_BASICAUTH_PASSWORD: view
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_SITE_BASEURL: '/'
