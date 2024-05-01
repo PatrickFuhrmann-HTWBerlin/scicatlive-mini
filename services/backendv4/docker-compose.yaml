@@ -1,20 +1,18 @@
-include:
-  - ../elastic/docker-compose.yaml
 
 services:
   backend:
-    image: ghcr.io/scicatproject/backend-next:v4.5.0
+    image: backend-first 
     depends_on:
       mongodb:
         condition: service_started
-      elastic:
-        condition: service_healthy
     volumes:
       - ./config/functionalAccounts.json:/home/node/app/functionalAccounts.json
     env_file:
       - ./config/.env
     labels:
       - traefik.http.routers.backend.rule=Host(`backend.localhost`)
+    ports:
+      - "7009:3000"
     healthcheck:
       test: wget --spider -Y off 'http://127.0.0.1:3000/api/v3/health'
       start_period: 5s
