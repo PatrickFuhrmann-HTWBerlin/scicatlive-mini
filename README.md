@@ -37,6 +37,20 @@ graph TD
    proxy -.- backend
    proxy -.- express
 ```
+This is in case the oai-pmh service is added.
+
+```mermaid
+graph TD
+   subgraph services
+      mongodb[mongodb**] --> backend
+      mongodb[mongodb**] --> express
+      mongodb[mongodb**] --> oai-pmh
+   end
+
+   proxy -.- backend
+   proxy -.- express
+   proxy -.- oai-pmh
+```
 
 We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have an explicit dependency on the `BE_VERSION` value. To view them, refer to the service README.
 
