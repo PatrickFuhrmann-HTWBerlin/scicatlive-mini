@@ -1,20 +1,15 @@
-# SciCat
+# SciCat Mini (HTW Copy)
 
-Files for running SciCat with docker-compose.
+Files for running SciCat with docker-compose. This code was cloned from the orginial repo.
+We limit the modules to the V4 backend, the mongodb, the mongo express and soon the 
+oai-pmh interface.
 
-## Tags
-
-You can use older versions of SciCat Live by checking out specific tags using `git checkout [TAG]` on your local clone of the repo.
-
-`v1.0` - the first stable version
-
-Note: older versions might not contain certain functionality (e.g. archival mock in `v1.0`). Be sure to take a look at that version's `README.md` as well.
 
 ## Steps
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/SciCatProject/scicatlive.git
+   
    ```
 2. Run with the following command inside the directory
    ```sh
