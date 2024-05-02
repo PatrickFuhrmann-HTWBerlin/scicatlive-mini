@@ -4,12 +4,11 @@ Files for running SciCat with docker-compose. This code was cloned from the orgi
 We limit the modules to the V4 backend, the mongodb, the mongo express and soon the 
 oai-pmh interface.
 
-
 ## Steps
 
 1. Clone the repository
    ```sh
-   
+   git clone https://github.com/PatrickFuhrmann-HTWBerlin/scicatlive-mini.git
    ```
 2. Run with the following command inside the directory
    ```sh
@@ -18,51 +17,31 @@ oai-pmh interface.
 
 ## Default setup
 
+Other than the original scicatlive from Carlo, this version only does the following:
+
 By running `docker-compose up -d` these steps take place:
 1. a [mongodb**](./services/mongodb/) container is created with some intial data.
-2. the SciCat [backend v4*](./services/backendv4/) container is created and connected to (1).
-3. the SciCat [frontend**](./services/frontend/) container is created and connected to (2).
-4. the SciCat [PaN searchapi](./services/searchapi/) container is created and connected to (2).
-5. a reverse [proxy](./services/proxy) container is created and routes traffic to (2), (3) and (4) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
+2. a [mongo express**](./services/view/) is created connecting to the mongodb module.
+3. the SciCat [backend v4*](./services/backendv4/) container is created and connected to (1).
+4. a reverse [proxy](./services/proxy) container is created and routes traffic to (2) and (3) through localhost subdomains, in the form: `http://${service}.localhost` (for the ones of need). The frontend is available at simply `http://localhost`.
 
 Here below we show the dependencies (if `B` depends on `A`, then we visualize as `A --> B`):
 
 ```mermaid
 graph TD
    subgraph services
-      subgraph backend
-         backends[v3*/v4*]
-      end
+      
       mongodb[mongodb**] --> backend
+      mongodb[mongodb**] --> express
       backend --> frontend[frontend**]
-      backend --> searchapi
-      backend --> jupyter
+
    end
 
    proxy -.- backend
-   proxy -.- frontend
-   proxy -.- searchapi
-   proxy -.- jupyter
+   proxy -.- express
 ```
 
 We flag with `*` the services which have extra internal dependencies, which are not shared across the two backend versions, and with `**` the ones which have an explicit dependency on the `BE_VERSION` value. To view them, refer to the service README.
-
-## Select the BE version to use
-
-The user can select what backend version to use, by setting the `BE_VERSION` environment variable (either `v3` or `v4`), [either](https://docs.docker.com/compose/environment-variables/envvars-precedence/) setting it in the shell or changing the [.env](./.env#L1) file. If this variable is blank, the system will default to `v4`. The services with `**` have a dependency on the `BE_VERSION` value. 
-
-For example, by running: 
-
-```sh
-export BE_VERSION=v3
-docker-compose up -d
-```
-
-Service (2) of the [default setup](README.md#default-setup) is replaced with the [v3* service](./services/backendv3/) and then steps from (1) to (5) are run. 
-
-For any value of `BE_VERSION`, the `backend` is available at `http://backend.localhost`.
-
-After optionally setting the `BE_VERSION`, one can still select the services to run as described [here](README.md#select-the-services).
 
 ## Select the services
 
