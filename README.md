@@ -30,11 +30,8 @@ Here below we show the dependencies (if `B` depends on `A`, then we visualize as
 ```mermaid
 graph TD
    subgraph services
-      
       mongodb[mongodb**] --> backend
       mongodb[mongodb**] --> express
-      backend --> frontend[frontend**]
-
    end
 
    proxy -.- backend
