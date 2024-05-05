@@ -1,6 +1,6 @@
 version: '3'
 include:
   - ./services/mongodb/docker-compose.yaml
-  - ./services/backend${BE_VERSION:-v4}/docker-compose.yaml
+  - ./services/backendv4/docker-compose.yaml
   - ./services/express/docker-compose.yaml
   - ./services/proxy/docker-compose.yaml
