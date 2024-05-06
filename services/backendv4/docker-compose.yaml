@@ -1,7 +1,12 @@
 
 services:
   backend:
-    image: backend-first 
+#
+#    original Image
+    image: ghcr.io/scicatproject/backend-next:v4.5.0
+#    or our own image e.g. : I`
+#   image: my-backend
+#
     depends_on:
       mongodb:
         condition: service_started
