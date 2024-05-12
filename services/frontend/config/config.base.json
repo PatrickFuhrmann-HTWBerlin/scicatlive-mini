@@ -19,6 +19,12 @@
    "landingPage":"",
    "lbBaseURL":"http://backend.localhost",
    "localColumns":[
+       {
+        "name": "select",
+        "order": 0,
+        "type": "standard",
+        "enabled": true
+      },
       {
          "name":"datasetName",
          "order":1,
@@ -73,7 +79,7 @@
    "searchSamples":true,
    "sftpHost":"",
    "shareEnabled":false,
-   "shoppingCartEnabled":false,
-   "shoppingCartOnHeader":false,
+   "shoppingCartEnabled":true,
+   "shoppingCartOnHeader":true,
    "tableSciDataEnabled":true
 }
