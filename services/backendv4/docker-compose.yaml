@@ -3,9 +3,9 @@ services:
   backend:
 #
 #    original Image
-    image: ghcr.io/scicatproject/backend-next:v4.5.0
+#    image: ghcr.io/scicatproject/backend-next:v4.5.0
 #    or our own image e.g. : I`
-#   image: my-backend
+    image: backendnext
 #
     depends_on:
       mongodb:
