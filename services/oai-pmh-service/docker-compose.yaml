@@ -1,0 +1,14 @@
+services:
+  oai-pmh-service:
+    image: oai-pmh-service
+    ports:
+      - 7005:3001
+    environment:
+      DATABASE: dacat-next
+      COLLECTION_ID: _id
+      COLLECTION: PublishedData
+      DB_HOST: mongodb
+      DB_PORT: 27017
+      REST_PORT: 3001
+
+
