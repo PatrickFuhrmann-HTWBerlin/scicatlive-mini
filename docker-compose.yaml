@@ -4,3 +4,6 @@ include:
   - ./services/backendv4/docker-compose.yaml
   - ./services/express/docker-compose.yaml
   - ./services/proxy/docker-compose.yaml
+  - ./services/frontend/docker-compose.yaml
+  - ./services/oai-pmh-service/docker-compose.yaml
+  - ./services/oai-pmh-view/docker-compose.yaml
