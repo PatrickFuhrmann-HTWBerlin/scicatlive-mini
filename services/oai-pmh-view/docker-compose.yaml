@@ -1,0 +1,10 @@
+services:
+  oai-pmh-view:
+    image: oai-pmh-view
+    ports:
+      - 8300:8300
+    environment:
+      WEB_PORT: 8300
+      OAI_HOST: oai-pmh-service
+      OAI_PORT: 3001
+      OAI_PREFIX: '/scicat/oai'
